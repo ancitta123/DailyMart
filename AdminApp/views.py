@@ -102,3 +102,6 @@ def registertable(request):
 def vieworder(request):
     data=Checkout.objects.all()
     return render(request,'vieworder.html',{'data':data})
+
+def register(request):
+    return render(request,'register.html')
