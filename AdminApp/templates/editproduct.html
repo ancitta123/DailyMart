@@ -1,0 +1,60 @@
+{% extends 'adminindex.html' %}
+{% block content %}
+<div class="card card-primary" style="margin-left: 400px; margin-top: 60px; margin-right: 200px;">
+    <div class="card-header">
+      <h3 class="card-title">ADD PRODUCTS</h3>
+    </div>
+    <!-- /.card-header -->
+    <!-- form start -->
+     {% for i in pro %}
+    <form enctype="multipart/form-data" action="{% url 'updates' id=i.id %}" method="post">
+      {% csrf_token %}
+      <div class="card-body">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name" value="{{i.name}}">
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input type="text" class="form-control" id="description" placeholder="Enter Description" name="description" value="{{i.description}}">
+        </div>
+
+        <div class="form-group">
+          <label for="category">Category</label>
+          <select class="form-control"  name="category" value="{{i.category}}">
+            <option value="" disabled selected>Select a category</option>
+            {% for i in data %}
+              <option>{{i.name}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="price">Price</label>
+          <input type="number" class="form-control" id="price" placeholder="Enter Price" name="price" value="{{i.price}}">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputFile">File input</label>
+          <div class="input-group">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="exampleInputFile" name="image">
+              <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+            </div>
+            <div class="input-group-append">
+              <span class="input-group-text">Upload</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+      </div>
+      <!-- /.card-body -->
+
+      <div class="card-footer">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+    {% endfor %}
+  </div>
+{% endblock %}

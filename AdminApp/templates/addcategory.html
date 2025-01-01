@@ -1,0 +1,157 @@
+{% extends 'adminindex.html' %}
+{% load static %}
+{% block content %}
+{% block side %}
+{% block heading %}
+{% endblock %}
+{% endblock %}
+<head>
+  <title>Admin | Add Category</title>
+</head>
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a href="index3.html" class="brand-link">
+    <img src="{% static 'dist/img/AdminLTELogo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <span class="brand-text font-weight-light">Admin</span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar user panel (optional) -->
+  
+
+    <!-- SidebarSearch Form -->
+    <div class="form-inline">
+      <div class="input-group" data-widget="sidebar-search">
+        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+        <div class="input-group-append">
+          <button class="btn btn-sidebar">
+            <i class="fas fa-search fa-fw"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+             with font-awesome or any other icon font library -->
+        <li class="nav-item">
+          <a href="{% url 'adminindex' %}"class="nav-link">
+            <img src="{% static 'dist/img/home.png' %}"class="nav-icon" alt="Icon">
+            <p>Home</p>
+          </a>
+        </li>
+        <li class="nav-item menu-open">
+          <a href="" class="nav-link active">
+            <img src="{% static 'dist/img/add.png' %}"class="nav-icon" alt="Icon">
+            <p>
+              ADD 
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{% url 'addcategory' %}" class="nav-link active">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Category</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'addproduct' %}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Products</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item menu-open">
+          <a href="" class="nav-link">
+            <img src="{% static 'dist/img/view.png' %}"class="nav-icon" alt="Icon"> 
+            <p>
+              VIEW
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{% url 'viewcategory' %}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Category</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'viewproduct' %}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Products</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        
+        <li class="nav-header">OTHER DETAILS</li>
+        <li class="nav-item">
+          <a href="{% url 'contacttable' %}" class="nav-link">
+            <img src="{% static 'dist/img/contacts.png' %}"class="nav-icon" alt="Icon">
+            <p>Contact</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'registertable' %}" class="nav-link">
+            <img src="{% static 'dist/img/user.png' %}"class="nav-icon" alt="Icon">
+            <p>Registered Users</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'vieworder' %}" class="nav-link">
+              <i class="fas fa-shopping-cart" style="margin-right: 8px;"></i>
+            <p>View Orders</p>
+          </a>
+        <li class="nav-header"></li>
+       
+     
+      </ul>
+    </nav>
+  
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>
+
+<div class="card card-primary" style="margin-left: 400px; margin-top: 100px; margin-right: 200px;">
+    <div class="card-header">
+      <h3 class="card-title">ADD CATEGORY</h3>
+    </div>
+    <!-- /.card-header -->
+    <!-- form start -->
+    <form enctype="multipart/form-data"  action="{% url 'categorydata' %}" method="post">
+      {% csrf_token %}
+      <div class="card-body">
+        <div class="form-group">
+          <label for="name">Category Name</label>
+          <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputFile">File input</label>
+          <div class="input-group">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="exampleInputFile" name="image">
+              <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+            </div>
+            <div class="input-group-append">
+              <span class="input-group-text">Upload</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+      </div>
+      <!-- /.card-body -->
+
+      <div class="card-footer">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}

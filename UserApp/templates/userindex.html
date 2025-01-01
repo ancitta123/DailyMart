@@ -1,0 +1,483 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
+{% block title %}
+	<!-- title -->
+	<title>DailyMart</title>
+{% endblock %}
+	<!-- favicon -->
+	<link rel="shortcut icon" type="image/png" href="{% static 'assets/img/favicon.png' %}">
+	<!-- google font -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+	<!-- fontawesome -->
+	<link rel="stylesheet" href="{% static 'assets/css/all.min.css' %}">
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+	<!-- owl carousel -->
+	<link rel="stylesheet" href="{% static 'assets/css/owl.carousel.css' %}">
+	<!-- magnific popup -->
+	<link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %}">
+	<!-- animate css -->
+	<link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+	<!-- mean menu css -->
+	<link rel="stylesheet" href="{% static 'assets/css/meanmenu.min.css' %}">
+	<!-- main style -->
+	<link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+	<!-- responsive -->
+	<link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
+
+</head>
+<body>
+	
+	<!--PreLoader-->
+    <div class="loader">
+        <div class="loader-inner">
+            <div class="circle"></div>
+        </div>
+    </div>
+    <!--PreLoader Ends-->
+    {% block nav %}	
+	<!-- header -->
+	<div class="top-header-area" id="sticker">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-sm-12 text-center">
+					<div class="main-menu-wrap">
+						<!-- logo -->
+				 		<div class="site-logo">
+							<a href="index.html">
+								<img src="{% static 'assets/img/logonew.png' %}" alt="">
+							</a>
+						</div>
+						<!-- logo -->
+                     
+						<!-- menu start -->
+						<nav class="main-menu">
+							<ul>
+								<li><a href="{% url 'home' %}">Home</a>
+								</li>
+								<li><a href="{% url 'abouts' %}">About</a></li>
+								{% if 'u_id' in request.session %}
+								<li><a href="{% url 'categorycard' %}">Category</a>
+								</li>
+								<li><a href="{% url 'productcard' cat='all' %}">Products</a>
+								</li>
+								{% endif %}
+								<li><a href="{% url 'contact' %}">Contact</a></li>
+								{% if 'u_id' in request.session %}
+								<li><a href="">Shop</a>
+									<ul class="sub-menu">
+										<li><a href="{% url 'cart' %}">Cart</a></li>
+										<li><a href="{% url 'checkout' %}">Check Out</a></li>
+										<li><a href="{% url 'success' %}">Purchase History</a></li>
+									</ul>
+								</li>
+								{% endif %}
+								<li>
+								
+									{% if 'u_id' in request.session %}
+									<a href="" style="color: rgb(255, 255, 255);" ><b>Welcome! {{request.session.username_u}}</b></a>
+		
+									<li>
+										<a href="{% url 'userlogout' %}">Logout</a></li>
+									<li>
+										{% else %}
+											
+									<li>
+										<a href="{% url 'login' %}">Login</a></li>
+								
+									<li>
+										<a href="{% url 'register' %}">Register</a>
+										{% endif %}
+									</li>
+									<li>
+									<div class="header-icons">
+										{% if 'u_id' in request.session %}
+										<a class="shopping-cart" href="{% url 'cart' %}"><i class="fas fa-shopping-cart"></i></a>
+										{% endif %}
+										
+									</div>
+								</li>
+							</ul>
+						</nav>
+						
+						<!-- menu end -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end header -->
+
+{% endblock %}
+
+{% block area %}
+<div class="homepage-slider">
+	<!-- single home slider -->
+	<div  class="hero-area hero-bg">
+		<div class="container">
+			<div class="row">
+				<div  class="col-lg-10 offset-lg-1 text-center">
+					<div class="hero-text">
+						<div class="hero-text-tablecell">
+							<p class="subtitle" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;color: rgb(237, 102, 12);"><strong>DailyMart</strong></p>
+							<h1 style="color: rgb(46, 43, 37);font-family: 'Times New Roman', Times, serif;">Your  Grocery  Hub</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- single home slider -->
+	<div class="single-homepage-slider homepage-bg-2">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-10 offset-lg-1 text-center">
+					<div class="hero-text">
+						<div class="hero-text-tablecell">
+
+							<h1>100% Organic Products</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- single home slider -->
+	<div class="single-homepage-slider homepage-bg-3">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-10 offset-lg-1 text-right">
+					<div class="hero-text">
+						<div class="hero-text-tablecell">
+							<p class="subtitle">Mega Sale Going On!</p>
+							<h1>Get December Discount</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end home page slider -->
+
+{% endblock %}
+    {% block content %}
+	<!-- features list section -->
+	<div class="list-section pt-80 pb-80">
+		<div class="container">
+
+			<div class="row">
+				<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+					<div class="list-box d-flex align-items-center">
+						<div class="list-icon">
+							<i class="fas fa-shipping-fast"></i>
+						</div>
+						<div class="content">
+							<h3>Free Shipping</h3>
+							<p>When order over $75</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+					<div class="list-box d-flex align-items-center">
+						<div class="list-icon">
+							<i class="fas fa-phone-volume"></i>
+						</div>
+						<div class="content">
+							<h3>24/7 Support</h3>
+							<p>Get support all day</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6">
+					<div class="list-box d-flex justify-content-start align-items-center">
+						<div class="list-icon">
+							<i class="fas fa-sync"></i>
+						</div>
+						<div class="content">
+							<h3>Refund</h3>
+							<p>Get refund within 3 days!</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- end features list section -->
+	<div class="product-section mt-100 mb-100">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="section-title">	
+						<h3><span class="orange-text">Our</span> Categories</h3>
+						<p>"Fresh, flavorful, and handpicked for you—explore our categories featuring the finest fruits, vegetables, meats, seafood, and more!"</p>
+					</div>
+				</div>
+			</div>
+	
+			<div class="row">
+				{% for i in data %}
+				<div class="col-lg-4 col-md-6 text-center">
+					<div class="single-product-item">
+						<div class="product-image">
+							<a href="single-product.html"><img src="{{i.image.url}}" alt="" style="height: 300px; width: 300px;"></a>
+						</div>
+						<h3>{{i.name}}</h3>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	<div class="product-section mt-100 mb-100">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="section-title">	
+						<h3><span class="orange-text">Our</span> Products</h3>
+						<p>"Quality you can trust, freshness you’ll love—explore our range of daily essentials!"</p>
+					</div>
+				</div>
+			</div>
+	
+			<div class="row">
+				{% for i in new %}
+				<div class="col-lg-4 col-md-6 text-center">
+					<div class="single-product-item">
+						<div class="product-image">
+							<a href="single-product.html"><img src="{{i.image.url}}" alt="" style="height: 300px; width: 300px;"></a>
+						</div>
+						<h3>{{i.name}}</h3>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+
+	<!-- advertisement section -->
+	<div class="abt-section mb-150">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-md-12">
+					<div class="abt-bg">
+						<a href="https://www.youtube.com/watch?v=DBLlFWYcIGQ" class="video-play-btn popup-youtube"><i class="fas fa-play"></i></a>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-12">
+					<div class="abt-text">
+						<p class="top-sub">Since Year 2002</p>
+						<h2>We are <span class="orange-text">DailyMart</span></h2>
+						<p style="text-align: justify;">DailyMart is your one-stop online destination for fresh groceries. From fruits and vegetables to meats, seafood, dairy, and pantry staples, we bring a wide range of quality products to your doorstep with convenience and care.</p>
+						<p style="text-align: justify;"><b>Shop smart, save time, and enjoy hassle-free grocery shopping with DailyMart! </b></p>
+						<a href="{% url 'abouts' %}" class="boxed-btn mt-4">know more</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end advertisement section -->
+	 <!-- shop banner -->
+	<section class="shop-banner">
+    	<div class="container">
+        	<h3>December sale is on! <br> with big <span class="orange-text">Discount...</span></h3>
+            <div class="sale-percent"><span>Sale! <br> Upto</span>50% <span>off</span></div>
+            <a href="{% url 'productcard' cat='all' %}" class="cart-btn btn-lg">Shop Now</a>
+        </div>
+    </section>
+	<!-- end shop banner -->
+
+	<!-- testimonail-section -->
+	<div class="testimonail-section mt-150 mb-150">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-10 offset-lg-1 text-center">
+					<div class="testimonial-sliders">
+						<div class="single-testimonial-slider">
+							<div class="client-avater">
+								<img src="{% static 'assets/img/avaters/avatar1.png' %}" alt="">
+							</div>
+							<div class="client-meta">
+								<h3>Christeena Samuel <span>Local shop owner</span></h3>
+								<p class="testimonial-body">
+									" I am truly impressed by DailyMart's dedication to excellence. Their wide range of quality products, user-friendly website, and reliable delivery service have set a new benchmark in the grocery industry. DailyMart makes online shopping easy and enjoyable for customers and is an inspiration to businesses like mine!"
+								</p>
+								<div class="last-icon">
+									<i class="fas fa-quote-right"></i>
+								</div>
+							</div>
+						</div>
+						<div class="single-testimonial-slider">
+							<div class="client-avater">
+								<img src="{% static 'assets/img/avaters/avatar2.png' %}" alt="">
+							</div>
+							<div class="client-meta">
+								<h3>David John <span>Local shop owner</span></h3>
+								<p class="testimonial-body">
+									Their seamless online platform, fresh products, and timely delivery make them a go-to choice for anyone. DailyMart truly sets the gold standard for grocery shopping!"
+								</p>
+								<div class="last-icon">
+									<i class="fas fa-quote-right"></i>
+								</div>
+							</div>
+						</div>
+						<div class="single-testimonial-slider">
+							<div class="client-avater">
+								<img src="{% static 'assets/img/avaters/avatar3.png' %}" alt="">
+							</div>
+							<div class="client-meta">
+								<h3>Jacob Manuel <span>Local shop owner</span></h3>
+								<p class="testimonial-body">
+									" DailyMart has revolutionized grocery shopping! As a fellow shop owner, I admire their commitment to quality, convenience, and customer satisfaction."
+								</p>
+								<div class="last-icon">
+									<i class="fas fa-quote-right"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+   
+	
+
+	<div class="logo-carousel-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="logo-carousel-inner">
+						<div class="single-logo-item">
+							<img src="{% static 'assets/img/company-logos/1.png' %}" alt="">
+						</div>
+						<div class="single-logo-item">
+							<img src="{% static 'assets/img/company-logos/2.png' %}" alt="">
+						</div>
+						<div class="single-logo-item">
+							<img src="{% static 'assets/img/company-logos/3.png' %}" alt="">
+						</div>
+						<div class="single-logo-item">
+							<img src="{% static 'assets/img/company-logos/4.png' %}" alt="">
+						</div>
+						<div class="single-logo-item">
+							<img src="{% static 'assets/img/company-logos/5.png' %}" alt="">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+	<!-- footer -->
+	<div class="footer-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box about-widget">
+						<h2 class="widget-title">About us</h2>
+						<p>"DailyMart brings you the freshest products at unbeatable prices. Enjoy handpicked quality, fast delivery, and a seamless shopping experience!"</p>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box get-in-touch">
+						<h2 class="widget-title">Get in Touch</h2>
+						<ul>
+							<li>DailyMart</li>
+							<li>123 Fresh Avenue, Cityville, XYZ 12345</li>
+							<li>support@dailymart.com</li>
+							<li>Phone: (123) 456-7890</li>
+							
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box pages">
+						<h2 class="widget-title">Pages</h2>
+						<ul>
+							<li><a href="{% url 'home' %}">Home</a></li>
+							<li><a href="{% url 'abouts' %}">About</a></li>
+							{% if 'u_id' in request.session %}
+							<li><a href="{% url 'categorycard' %}">Category</a></li>
+							<li><a href="{% url 'productcard' cat='all' %}">Products</a></li>
+							{% endif %}
+							<li><a href="{% url 'contact' %}">Contact</a></li>
+							{% if 'u_id' in request.session %}
+							<li><a href="{% url 'cart' %}">Shop</a></li>
+							{% endif %}
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box subscribe">
+						<h2 class="widget-title">Subscribe</h2>
+						<p>Subscribe to our mailing list to get the latest updates.</p>
+						<form action="index.html">
+							<input type="email" placeholder="Email">
+							<button type="submit"><i class="fas fa-paper-plane"></i></button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end footer -->
+	
+	<!-- copyright -->
+	<div class="copyright">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-md-12">
+					<p>Copyrights &copy; 2002 - <a href="https://imransdesign.com/"></a>,  All Rights Reserved.<br>
+						
+					</p>
+				</div>
+				<div class="col-lg-6 text-right col-md-12">
+					<div class="social-icons">
+						<ul>
+							<li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-dribbble"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end copyright -->
+	
+	<!-- jquery -->
+	<script src="{% static 'assets/js/jquery-1.11.3.min.js' %}"></script>
+	<!-- bootstrap -->
+	<script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+	<!-- count down -->
+	<script src="{% static 'assets/js/jquery.countdown.js' %}"></script>
+	<!-- isotope -->
+	<script src="{% static 'assets/js/jquery.isotope-3.0.6.min.js' %}"></script>
+	<!-- waypoints -->
+	<script src="{% static 'assets/js/waypoints.js' %}"></script>
+	<!-- owl carousel -->
+	<script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+	<!-- magnific popup -->
+	<script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+	<!-- mean menu -->
+	<script src="{% static 'assets/js/jquery.meanmenu.min.js' %}"></script>
+	<!-- sticker js -->
+	<script src="{% static 'assets/js/sticker.js' %}"></script>
+	<!-- main js -->
+	<script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,155 @@
+{% extends 'adminindex.html' %}
+{% load static %}
+{% block content %}
+{% block side %}
+{% block heading %}
+{% endblock %}
+{% endblock %}
+<head>
+  <title>Admin | Purchase Details</title>
+</head>
+
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a href="index3.html" class="brand-link">
+    <img src="{% static 'dist/img/AdminLTELogo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <span class="brand-text font-weight-light">Admin</span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar user panel (optional) -->
+  
+
+    <!-- SidebarSearch Form -->
+    <div class="form-inline">
+      <div class="input-group" data-widget="sidebar-search">
+        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+        <div class="input-group-append">
+          <button class="btn btn-sidebar">
+            <i class="fas fa-search fa-fw"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+             with font-awesome or any other icon font library -->
+             <li class="nav-item">
+              <a href="{% url 'adminindex' %}" class="nav-link">
+                <img src="{% static 'dist/img/home.png' %}"class="nav-icon" alt="Icon">
+                <p>Home</p>
+              </a>
+            </li>
+        <li class="nav-item menu-open">
+          <a href=""class="nav-link"  >
+            <img src="{% static 'dist/img/add.png' %}"class="nav-icon" alt="Icon">
+            <p>
+              ADD 
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{% url 'addcategory' %}" class="nav-link" >
+                <i class="far fa-circle nav-icon"></i>
+                <p>Category</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'addproduct' %}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Products</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+      
+        <li class="nav-item menu-open">
+          <a href="" class="nav-link">
+            <img src="{% static 'dist/img/view.png' %}"class="nav-icon" alt="Icon">
+            <p>
+              VIEW
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{% url 'viewcategory' %}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Category</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'viewproduct' %}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Products</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-header">OTHER DETAILS</li>
+        <li class="nav-item">
+          <a href="{% url 'contacttable' %}" class="nav-link">
+            <img src="{% static 'dist/img/contacts.png' %}"class="nav-icon" alt="Icon">
+            <p>Contact</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'registertable' %}" class="nav-link">
+            <img src="{% static 'dist/img/user.png' %}"class="nav-icon" alt="Icon">
+            <p>Registered Users</p>
+          </a>
+        </li>
+          <li class="nav-item">
+            <a href="{% url 'vieworder' %}" class="nav-link active">
+                <i class="fas fa-shopping-cart"></i>
+              <p>View Orders</p>
+            </a>
+        <li class="nav-header"></li>
+      </ul>
+    </nav>
+  
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>
+
+<div class="card" style="margin-left: 370px; margin-top: 100px; margin-right: 200px; width: 1000px; border: 1px solid white;" >
+    <div class="card-header" style="background-color:#007bff; color: white;">
+      <h3 class="card-title" style=" margin-left: 380px;word-spacing: 10px;"><b>USER PURCHASED DATA</b></h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+      <table class="table table-bordered" style="border: 1px solid black;"> 
+        <thead style="background-color: white;">
+          <tr style="text-align: center;">
+            <th style="width: 250px; border: 1px solid black;">USER NAME</th>
+            <th style="width: 200px; border: 1px solid black;">EMAIL</th>
+            <th style="width: 200px; border: 1px solid black;">PHONE NO</th>
+            <th style="width: 100px; border: 1px solid black;">PRODUCT IMAGE</th>
+            <th style="width: 150px; border: 1px solid black;">PRODUCT</th>
+            <th style="width: 100px; border: 1px solid black;">QUANTITY</th>
+            <th style="width: 100px; border: 1px solid black;">PRICE</th>
+
+          </tr>
+        </thead>
+        <tbody style="background-color:white;">
+            {% for i in data %}
+          <tr>
+            <td style="border: 1px solid black;">{{i.usercheckout.username}}</td>
+            <td style="border: 1px solid black;">{{i.usercheckout.email}}</td>
+            <td style="border: 1px solid black;">{{i.usercheckout.mobile}}</td>
+            <td style="border: 1px solid black;"><img src="{{i.usercart.userpro.image.url}}" style="height: 150px; width: 200px; "></td>
+            <td style="border: 1px solid black;">{{i.usercart.userpro.name}}</td>
+            <td style="border: 1px solid black;">{{i.usercart.quantity}}</td>
+            <td style="border: 1px solid black;">{{i.usercart.total}}</td>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <!-- /.card-body -->
+    
+  </div>
+{% endblock %}

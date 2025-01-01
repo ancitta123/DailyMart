@@ -1,0 +1,217 @@
+{% extends 'userindex.html' %}
+{% load static %}
+{% block content %}
+{% block title %}
+{% block nav %}
+{% block area %}
+{% endblock %}
+{% endblock %}
+{% endblock %}
+
+<head>
+	<title>CHECK OUT</title>
+</head>
+<body>
+	
+	<!--PreLoader-->
+    <div class="loader">
+        <div class="loader-inner">
+            <div class="circle"></div>
+        </div>
+    </div>
+    <!--PreLoader Ends-->
+	
+	<!-- header -->
+	<div class="top-header-area" id="sticker">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-sm-12 text-center">
+					<div class="main-menu-wrap">
+						<!-- logo -->
+						<div class="site-logo">
+							<a href="index.html">
+								<img src="{% static 'assets/img/logonew.png' %}" alt="">
+							</a>
+						</div>
+						<!-- logo -->
+
+						<!-- menu start -->
+                        <nav class="main-menu text-left" style="margin-left: 310px;">
+							<ul>
+								<li><a href="{% url 'home' %}">Home</a>
+								</li>
+								<li><a href="{% url 'abouts' %}">About</a></li>
+                                {% if 'u_id' in request.session %}
+								<li><a href="{% url 'categorycard' %}">Category</a>
+								</li>
+								<li><a href="{% url 'productcard' cat='all' %}">Products</a></li>
+                                {% endif %}
+								<li><a href="{% url 'contact' %}">Contact</a></li>
+                                {% if 'u_id' in request.session %}
+								<li class="current-list-item"><a href="">Shop</a>
+									<ul class="sub-menu">
+										<li><a href="{% url 'cart' %}">Cart</a></li>
+										<li class="current-list-item"><a href="{% url 'checkout' %}">Check Out</a></li>
+										<li><a href="{% url 'success' %}">Purchase History</a></li>
+									</ul>
+								</li>
+								{% endif %}
+								<li>
+									<div class="header-icons">
+                                        <li class="current-list-item">
+											{% if 'u_id' in request.session %}
+										<a class="shopping-cart" href="{% url 'cart' %}"><i class="fas fa-shopping-cart"></i></a>
+										{% endif %}
+                                        </li>
+									</div>
+								</li>
+							</ul>
+						</nav>
+						
+						<!-- menu end -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+ <!-- breadcrumb-section -->
+ <div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Fresh and Organic</p>
+                    <h1>Check Out Product</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+<div class="checkout-section mt-100 mb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="checkout-accordion-wrap">
+                    <div class="accordion" id="accordionExample">
+                      <div class="card single-accordion">
+                        <div class="card-header" id="headingOne">
+                          <h5 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                              Billing Address
+                            </button>
+                          </h5>
+                        </div>
+
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                          <div class="card-body">
+                            <div class="billing-address-form">
+                                <form action="{% url 'checkoutdata' %}" method="post">
+                                    {% csrf_token %}
+                                    <p style="margin-left: 15px;"><input type="text" placeholder="Name" name="username" value="{{request.session.username_u}}"></p>
+                                    <p style="margin-left: 15px;"><input type="email" placeholder="Email" name="email" value="{{request.session.email_u}}"></p>
+                                    <p style="margin-left: 15px;"><input type="text" placeholder="Address" name="address"></p>
+                                    <p style="margin-left: 15px;"><input type="tel" placeholder="Phone" name="mobile" value="{{request.session.phonenumber_u}}"></p>
+                                    <div class="col-lg-12 mb-3 mb-lg-0" style="display: flex; gap: 10px;">
+                                        <p style="flex: 0; "><input type="text" placeholder="State" style="width: 209px;" name="state"></p>
+                                        <p style="flex: 0; "><input type="text" placeholder="Country" style="width: 200px;" name="country"></p>
+                                        <p style="flex: 0; "><input type="number" placeholder="Pincode" style="width: 209px" name="pincode"></p>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class="card single-accordion">
+                                        <div class="card-header" id="headingThree">
+                                          <h5 class="mb-0">
+                                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                                              Card Details
+                                            </button>
+                                          </h5>
+                                        </div>
+                                        <br>
+                                        <p style="margin-left: 15px; width: 620px;"><input type="text" placeholder="Card Name"></p>
+                                    <p style="margin-left: 15px; width: 620px;"><input type="tel" placeholder="Card Number"></p>
+                                    <br>
+                                      </div>
+                                      <br>
+                                      <button class="cart-btn" style="background-color: rgb(226, 112, 13); border: rgb(225, 125, 36);margin-left: 500px; color: white; width: 150px; height: 50px; border-radius: 30px;" type="submit"><b>Place Order</b></button>
+                                </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div> 
+            </div>
+            
+
+            <div class="col-lg-4">
+                <div class="order-details-wrap">
+                    <table class="order-details">
+                        
+                        <thead>
+                            <tr>
+                                <th><b>Your order Details</b></th>
+                                <th><b>Price</b></th>
+                            </tr>
+                        </thead>
+                        <thead>
+                            <tr>
+                                <th><b>Product</b></th>
+                                <th><b>Total</b></th>
+                            </tr>
+                        </thead>
+                        <tbody class="order-details-body">
+                            {% for i in data %}
+                            <tr>
+                                <td>{{i.userpro.name}}</td>
+                                <td>{{i.total}}Rs</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tbody class="checkout-details">
+                            <tr>
+                                <td><b>Total</b></td>
+                                <td>{{a.total__sum}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- end check out section -->
+
+<!-- logo carousel -->
+<div class="logo-carousel-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="logo-carousel-inner">
+                    <div class="single-logo-item">
+                        <img src="{% static 'assets/img/company-logos/1.png' %}" alt="">
+                    </div>
+                    <div class="single-logo-item">
+                        <img src="{% static 'assets/img/company-logos/2.png' %}" alt="">
+                    </div>
+                    <div class="single-logo-item">
+                        <img src="{% static 'assets/img/company-logos/3.png' %}" alt="">
+                    </div>
+                    <div class="single-logo-item">
+                        <img src="{% static 'assets/img/company-logos/4.png' %}" alt="">
+                    </div>
+                    <div class="single-logo-item">
+                        <img src="{% static 'assets/img/company-logos/5.png' %}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end logo carousel -->
+
+    {% endblock %}

@@ -1,0 +1,159 @@
+{% extends 'userindex.html' %}
+{% load static %}
+{% block content %}
+{% block title %}
+{% endblock %}
+{% block nav %}
+{% block area %}
+{% endblock %}
+{% endblock %}
+
+<head>
+	<!-- title -->
+	<title>SINGLE PRODUCT</title>
+</head>
+
+	
+	<!--PreLoader-->
+    <div class="loader">
+        <div class="loader-inner">
+            <div class="circle"></div>
+        </div>
+    </div>
+    <!--PreLoader Ends-->
+	
+	<!-- header -->
+	<div class="top-header-area" id="sticker">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-sm-12 text-center">
+					<div class="main-menu-wrap">
+						<!-- logo -->
+						<div class="site-logo">
+							<a href="index.html">
+								<img src="{% static 'assets/img/logonew.png' %}" alt="">
+							</a>
+						</div>
+						<!-- logo -->
+
+						<!-- menu start -->
+						<nav class="main-menu text-left" style="margin-left: 310px;">
+							<ul>
+								<li><a href="{% url 'home' %}">Home</a>
+								</li>
+								<li><a href="{% url 'abouts' %}">About</a></li>
+								<li><a href="{% url 'categorycard' %}">Category</a>
+								</li>
+								<li class="current-list-item"><a href="{% url 'productcard' cat='all ' %}">Products</a>
+								</li>
+								<li><a href="{% url 'contact' %}">Contact</a></li>
+								{% if 'u_id' in request.session %}
+								<li><a href="">Shop</a>
+									<ul class="sub-menu">
+										<li><a href="{% url 'cart' %}">Cart</a></li>
+										<li><a href="{% url 'checkout' %}">Check Out</a></li>
+										<li><a href="{% url 'success' %}">Purchase History</a></li>
+									</ul>
+								</li>
+								{% endif %}
+								<li>
+									<div class="header-icons">
+										<a class="shopping-cart" href="{% url 'cart' %}"><i class="fas fa-shopping-cart"></i></a>
+										
+									</div>
+								</li>
+							</ul>
+						</nav>
+						
+						<!-- menu end -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end header -->
+
+
+	<!-- breadcrumb-section -->
+	<div class="breadcrumb-section breadcrumb-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="breadcrumb-text">
+						<p>See More Details</p>
+						<h1>Single Product</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end breadcrumb section -->
+
+	<!-- single product -->
+	<div class="single-product mt-150 mb-150">
+		<div class="container">
+			<div class="row">
+				{% for i in data %}
+				<div class="col-md-5">
+					<div class="single-product-img">
+						<img src="{{i.image.url}}" alt="" style="height: 350px; width: 500px;">
+			  		</div>
+				</div>
+				<div class="col-md-7">
+					<div class="single-product-content">
+						<h3>{{i.name}}</h3>
+						<p class="single-product-pricing"><span>Per Kg</span><b>RS.</b>{{i.price}}</p>
+						<p style="text-align: justify; width: 500px;">{{i.description}}</p>
+						<p><strong>Category: </strong>{{i.category}}</p>
+						<div class="single-product-form">
+
+							<form action="{% url 'addtocart' id=i.id %}" method="post">
+								{% csrf_token %}
+								<input type="number" name="quantity" id="quantity" value="1" min="1" max="100">
+								<input type="hidden" name="price" id="price" value="{{i.price}}">
+                                <input type="number" name="total" id="total" value="{{i.price}}" >
+								<br>
+								<br>
+				
+                            {% if 'u_id' in request.session %}
+							<button class="cart-btn" style="background-color: rgb(226, 112, 13); border: rgb(225, 125, 36); color: white; width: 150px; height: 50px; border-radius: 30px;" type="submit">
+								<i class="fas fa-shopping-cart" style="margin-right: 8px;"></i> Add to Cart
+							  </button>
+							  
+							{% endif %}
+						</form>
+						</div>
+						<h4>Share:</h4>
+						<ul class="product-share">
+							<li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+							<li><a href=""><i class="fab fa-twitter"></i></a></li>
+							<li><a href=""><i class="fab fa-google-plus-g"></i></a></li>
+							<li><a href=""><i class="fab fa-linkedin"></i></a></li>
+						</ul>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	<!-- end single product -->
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function()
+        {
+            $('#quantity').on('change', function(){
+                var quantity=$('#quantity').val();
+                var price=$('#price').val();
+                var total=parseInt(quantity)*parseInt(price);
+                $('#total').val(total);
+            })
+        })
+    </script>
+
+
+{% endblock %}

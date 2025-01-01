@@ -1,0 +1,122 @@
+{% extends 'userindex.html' %}
+{% load static %}
+{% block content %}
+{% block nav %}
+{% block area %}
+{% block title %}
+{% endblock %}
+{% endblock %}
+{% endblock %}
+
+<head>
+    <title>PRODUCTS</title>
+</head>
+<!--PreLoader-->
+<div class="loader">
+    <div class="loader-inner">
+        <div class="circle"></div>
+    </div>
+</div>
+<!--PreLoader Ends-->
+
+<!-- header -->
+<div class="top-header-area" id="sticker">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 text-center">
+                <div class="main-menu-wrap">
+                    <!-- logo -->
+                    <div class="site-logo">
+                        <a href="index.html">
+                            <img src="{% static 'assets/img/logonew.png' %}" alt="" style="margin-left: 20px;">
+                        </a>
+                    </div>
+                    <!-- logo -->
+						<!-- menu start -->
+						<nav class="main-menu text-left" style="margin-left: 310px;" >
+							<ul>
+								<li><a href="{% url 'home' %}">Home</a>
+								</li>
+								<li><a href="{% url 'abouts' %}">About</a></li>
+								{% if 'u_id' in request.session %}
+								<li><a href="{% url 'categorycard' %}">Category</a>
+								</li>
+								<li class="current-list-item"><a href="{% url 'productcard' cat='all' %}">Products</a>
+								</li>
+								{% endif %}
+								<li><a href="{% url 'contact' %}">Contact</a></li>
+								{% if 'u_id' in request.session %}
+								<li><a href="">Shop</a>
+									<ul class="sub-menu">
+										<li><a href="{% url 'cart' %}">Cart</a></li>
+										<li><a href="{% url 'checkout' %}">Check Out</a></li>
+										<li><a href="{% url 'success' %}">Purchase History</a></li>
+									</ul>
+								</li>
+								{% endif %}
+								<li>
+									<div class="header-icons">
+										{% if 'u_id' in request.session %}
+										<a class="shopping-cart" href="{% url 'cart' %}"><i class="fas fa-shopping-cart"></i></a>
+										{% endif %}
+										
+									</div>
+								</li>
+							</ul>
+						</nav>
+						
+						<!-- menu end -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end header -->
+
+	
+	
+		<!-- breadcrumb-section -->
+		<div class="breadcrumb-section breadcrumb-bg">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 offset-lg-2 text-center">
+						<div class="breadcrumb-text">
+							<p>Fresh and Organic</p>
+							<h1>Products</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end breadcrumb section -->
+
+	<!-- products -->
+	<div class="product-section mt-100 mb-100">
+		<div class="container">
+
+			<div class="row product-lists">
+                {% for i in data %}
+				<div class="col-lg-4 col-md-6 text-center strawberry">
+					<div class="single-product-item">
+						<div class="product-image">
+							<a href="single-product.html"><img src="{{i.image.url}}" alt="" style="height: 250px; width: 300px;"></a>
+						</div>
+						<h3>{{i.name}}</h3>
+                        <a href="{% url 'singleproduct' id=i.id  %}" class="cart-btn">View More</a>
+					</div>
+				</div>
+			{% endfor %}	
+			</div>
+        </div>
+	</div>
+	<!-- end products -->
+	<section class="shop-banner">
+		<div class="container">
+			<h3>December sale is on! <br> with big <span class="orange-text">Discount...</span></h3>
+			<div class="sale-percent"><span>Sale! <br> Upto</span>50% <span>off</span></div>
+			<a href="{% url 'productcard' cat='all' %}" class="cart-btn btn-lg">Shop Now</a>
+		</div>
+	</section>
+	<!-- end shop banner -->
+
+{% endblock  %}

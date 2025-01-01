@@ -1,0 +1,254 @@
+{% extends 'userindex.html' %}
+{% load static %}
+{% block content %}
+{% block area %}
+{% block title %}
+{% block nav %}
+{% endblock %}
+{% endblock %}
+{% endblock %}
+<head>
+    <title>ABOUT US</title>
+</head>
+<div class="loader">
+    <div class="loader-inner">
+        <div class="circle"></div>
+    </div>
+</div>
+<!--PreLoader Ends-->
+
+<!-- header -->
+<div class="top-header-area" id="sticker">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 text-center">
+                <div class="main-menu-wrap">
+                    <!-- logo -->
+                    <div class="site-logo">
+                        <a href="index.html">
+                          <img src="{% static 'assets/img/logonew.png' %}" alt="">
+                        </a>
+                    </div>
+                    <!-- logo -->
+
+                    <!-- menu start -->
+                    <nav class="main-menu text-left" style="margin-left: 310px;">
+                        <ul>
+                            <li><a href="{% url 'home' %}">Home</a>
+                            </li>
+                            <li class="current-list-item"><a href="{% url 'abouts' %}">About</a></li>
+                            {% if 'u_id' in request.session %}
+                            <li><a href="{% url 'categorycard' %}">Category</a>
+                            </li>
+                            <li><a href="{% url 'productcard' cat='all' %}">Products</a>
+                            </li>
+                            {% endif %}
+                            <li><a href="{% url 'contact' %}">Contact</a></li>
+                            {% if 'u_id' in request.session %}
+								<li><a href="">Shop</a>
+									<ul class="sub-menu">
+										<li><a href="{% url 'cart' %}">Cart</a></li>
+										<li><a href="{% url 'checkout' %}">Check Out</a></li>
+										<li><a href="{% url 'success' %}">Purchase History</a></li>
+									</ul>
+								</li>
+								{% endif %}
+                            <li>
+                                <div class="header-icons">
+                                    {% if 'u_id' in request.session %}
+                                    <a class="shopping-cart" href="{% url 'cart' %}"><i class="fas fa-shopping-cart"></i></a>
+                                    {% endif %}
+                                    
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                    
+                    <!-- menu end -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end header -->
+
+<!-- search area -->
+<div class="search-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <span class="close-btn"><i class="fas fa-window-close"></i></span>
+                <div class="search-bar">
+                    <div class="search-bar-tablecell">
+                        <h3>Search For:</h3>
+                        <input type="text" placeholder="Keywords">
+                        <button type="submit">Search <i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end search arewa -->
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>We Sale Fresh Products</p>
+                    <h1>About Us</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+
+<!-- featured section -->
+<div class="feature-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="featured-text">
+                    <h2 class="pb-3">Why <span class="orange-text">DailyMart</span></h2>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 mb-4 mb-md-5">
+                            <div class="list-box d-flex">
+                                <div class="list-icon">
+                                    <i class="fas fa-shipping-fast"></i>
+                                </div>
+                                <div class="content">
+                                    <h3>Home Delivery</h3>
+                                    <p>DailyMart brings fresh fruits, vegetables, and juices right to your doorstep, making grocery shopping convenient and hassle-free.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 mb-5 mb-md-5">
+                            <div class="list-box d-flex">
+                                <div class="list-icon">
+                                    <i class="fas fa-money-bill-alt"></i>
+                                </div>
+                                <div class="content">
+                                    <h3>Best Price</h3>
+                                    <p>We offer the best prices on fresh produce, juices, and more, ensuring unbeatable value without compromising on quality.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 mb-5 mb-md-5">
+                            <div class="list-box d-flex">
+                                <div class="list-icon">
+                                    <i class="fas fa-briefcase"></i>
+                                </div>
+                                <div class="content">
+                                    <h3>Custom Box</h3>
+                                    <p>Create your perfect box with your choice of fruits, vegetables, and juices. Freshness and convenience—tailored for you!</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="list-box d-flex">
+                                <div class="list-icon">
+                                    <i class="fas fa-sync-alt"></i>
+                                </div>
+                                <div class="content">
+                                    <h3>Quick Refund</h3>
+                                    <p>We offer a fast refund process to ensure your satisfaction. If you're not happy with your purchase, we'll process your refund quickly.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="testimonail-section mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 offset-lg-1 text-center">
+                <div class="testimonial-sliders">
+                    <div class="single-testimonial-slider">
+                        <div class="client-avater">
+                            <img src="{% static 'assets/img/avaters/avatar1.png' %}" alt="">
+                        </div>
+                        <div class="client-meta">
+                            <h3>Christeena Samuel <span>Local shop owner</span></h3>
+                            <p class="testimonial-body">
+                                " I am truly impressed by DailyMart's dedication to excellence. Their wide range of quality products, user-friendly website, and reliable delivery service have set a new benchmark in the grocery industry. DailyMart makes online shopping easy and enjoyable for customers and is an inspiration to businesses like mine!"
+                            </p>
+                            <div class="last-icon">
+                                <i class="fas fa-quote-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="single-testimonial-slider">
+                        <div class="client-avater">
+                            <img src="{% static 'assets/img/avaters/avatar2.png' %}" alt="">
+                        </div>
+                        <div class="client-meta">
+                            <h3>David John <span>Local shop owner</span></h3>
+                            <p class="testimonial-body">
+                                Their seamless online platform, fresh products, and timely delivery make them a go-to choice for anyone. DailyMart truly sets the gold standard for grocery shopping!"
+                            </p>
+                            <div class="last-icon">
+                                <i class="fas fa-quote-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="single-testimonial-slider">
+                        <div class="client-avater">
+                            <img src="{% static 'assets/img/avaters/avatar3.png' %}" alt="">
+                        </div>
+                        <div class="client-meta">
+                            <h3>Jacob Manuel <span>Local shop owner</span></h3>
+                            <p class="testimonial-body">
+                                " DailyMart has revolutionized grocery shopping! As a fellow shop owner, I admire their commitment to quality, convenience, and customer satisfaction."
+                            </p>
+                            <div class="last-icon">
+                                <i class="fas fa-quote-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end featured section -->
+<section class="shop-banner">
+    <div class="container">
+        <h3>December sale is on! <br> with big <span class="orange-text">Discount...</span></h3>
+        <div class="sale-percent"><span>Sale! <br> Upto</span>50% <span>off</span></div>
+        <a href="{% url 'productcard' cat='all' %}" class="cart-btn btn-lg">Shop Now</a>
+    </div>
+</section>
+
+<div class="logo-carousel-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="logo-carousel-inner">
+                    <div class="single-logo-item">
+                        <img src="{% static 'assets/img/company-logos/1.png' %}" alt="">
+                    </div>
+                    <div class="single-logo-item">
+                        <img src="{% static 'assets/img/company-logos/2.png' %}" alt="">
+                    </div>
+                    <div class="single-logo-item">
+                        <img src="{% static 'assets/img/company-logos/3.png' %}" alt="">
+                    </div>
+                    <div class="single-logo-item">
+                        <img src="{% static 'assets/img/company-logos/4.png' %}" alt="">
+                    </div>
+                    <div class="single-logo-item">
+                        <img src="{% static 'assets/img/company-logos/5.png' %}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
